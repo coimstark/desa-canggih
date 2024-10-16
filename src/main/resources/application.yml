@@ -1,0 +1,53 @@
+server:
+  http2:
+    enabled: true
+
+spring:
+  datasource:
+    url: jdbc:postgresql://${POSTGRES_DB_SERVER_ADDRESS:localhost}:${POSTGRES_DB_SERVER_PORT:5432}/
+    username: ${POSTGRES_USER:postgres}
+    password: ${POSTGRES_PASSWORD:adminhanyamitos}
+    hikari:
+      pool-name: DesaCanggihHikariCP
+  jpa:
+    hibernate:
+      ddl-auto: create
+    open-in-view: false
+  jta:
+    enabled: false
+
+springdoc:
+  show-actuator: true
+
+management:
+  endpoint:
+    health:
+      show-details: ALWAYS
+      probes:
+        enabled: true
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+
+logging:
+  level:
+    org.springframework: INFO
+    us.kues.desa.canggih: INFO
+
+## FIXME : Customize JWT token and Swagger information for your application
+
+jwt:
+  secretKey: 6c6a0a0bbe5298392940bbcfae53525b3cf04e4917b8bc94149deb2ad05f0ce9
+  issuer: kues.us
+  expirationMinute: 10
+
+swagger:
+  contact-name: Abdul Rokhim
+  contact-mail: coim@kues.us
+  contact-url: https://kues.us
+  app-name: Desa Canggih
+  app-description: "Desa Canggih is a simple Spring Boot application with JWT authentication and PostgreSQL database."
+  app-version: 3.3.1
+  app-license-url: https://www.apache.org/licenses/LICENSE-2.0.html
+  app-license: Apache 2.0
